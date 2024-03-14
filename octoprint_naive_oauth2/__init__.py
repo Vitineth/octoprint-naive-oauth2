@@ -17,12 +17,6 @@ required_settings = ["client_id", "client_secret", "authorization_url", "token_u
 
 
 def is_none_or_empty(s):
-    print("testing \"{}\" = {} or {} or {}".format(
-        s,
-        s is None,
-        type(s) is not str,
-        len(str(s).strip()) == 0
-    ))
     return s is None or type(s) is not str or len(str(s).strip()) == 0
 
 
@@ -240,7 +234,6 @@ class Naive_oauth2Plugin(octoprint.plugin.SettingsPlugin,
         )
         self._logger.info(f"Logging in user {user_id} from {remote_addr} via oauth")
 
-        print(client.token)
         r.status_code = 301
         r.headers.set('Location', url_for("index", _external=False))
         return r
